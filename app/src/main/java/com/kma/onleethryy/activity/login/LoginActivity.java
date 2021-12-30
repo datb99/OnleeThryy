@@ -19,7 +19,6 @@ public class LoginActivity extends AppCompatActivity {
         LoginViewModel viewModel = new LoginViewModel(this);
         binding.setViewModel(viewModel);
 
-
     }
 
 }

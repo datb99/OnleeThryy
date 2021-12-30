@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.kma.onleethryy">
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:allowBackup="true"
@@ -11,9 +12,6 @@
         android:theme="@style/Theme.OnleeThryy">
         <activity
             android:name=".activity.mainScreen.MainScreenActivity"
-            android:exported="true" />
-        <activity
-            android:name=".activity.mainScrean.MainScreenActivity"
             android:exported="true" />
         <activity
             android:name=".activity.login.LoginActivity"
