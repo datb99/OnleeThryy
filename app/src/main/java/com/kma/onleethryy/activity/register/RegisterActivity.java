@@ -3,6 +3,7 @@ package com.kma.onleethryy.activity.register;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.Button;
@@ -41,12 +42,11 @@ public class RegisterActivity extends AppCompatActivity {
                     .enqueue(new Callback<APIInterface.returnRegister>() {
                         @Override
                         public void onResponse(@NonNull Call<APIInterface.returnRegister> call, @NonNull Response<APIInterface.returnRegister> response) {
-                            if (response.body().isSuccess()) {
+                            if (response.body()!= null && response.body().isSuccess()) {
                                 Toast.makeText(RegisterActivity.this, "Success", Toast.LENGTH_SHORT).show();
-                                Log.i("TAG", "onResponse: Success");
+                                RegisterActivity.this.startActivity(new Intent(RegisterActivity.this, LoginActivity.class));
                             } else {
                                 Toast.makeText(RegisterActivity.this, response.body().getMessage(), Toast.LENGTH_SHORT).show();
-                                Log.i("TAG", "onResponse: " + response.body().getMessage());
                             }
                         }
 
