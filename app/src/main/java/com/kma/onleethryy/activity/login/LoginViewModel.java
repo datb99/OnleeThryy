@@ -2,6 +2,7 @@ package com.kma.onleethryy.activity.login;
 
 import android.content.Intent;
 import android.util.Log;
+import android.widget.Toast;
 
 import androidx.databinding.BaseObservable;
 import androidx.databinding.Bindable;
@@ -10,6 +11,7 @@ import androidx.databinding.ObservableField;
 import com.google.gson.Gson;
 import com.kma.onleethryy.BR;
 import com.kma.onleethryy.activity.mainScreen.MainScreenActivity;
+import com.kma.onleethryy.activity.register.RegisterActivity;
 import com.kma.onleethryy.api.APIClient;
 import com.kma.onleethryy.api.APIInterface;
 
@@ -78,7 +80,7 @@ public class LoginViewModel extends BaseObservable {
     }
 
     public void onClickSignUp(){
-
+        activity.startActivity(new Intent(activity , RegisterActivity.class));
     }
 
     public void onClickOption(){

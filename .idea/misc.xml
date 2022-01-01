@@ -12,6 +12,8 @@
         <entry key="..\:/Android/Android Project/OnleeThryy/app/src/main/res/layout/fragment_all_user.xml" value="0.22447916666666667" />
         <entry key="..\:/Android/Android Project/OnleeThryy/app/src/main/res/layout/fragment_friend.xml" value="0.21041666666666667" />
         <entry key="..\:/Android/Android Project/OnleeThryy/app/src/main/res/layout/fragment_list_chat.xml" value="0.211306765523633" />
+        <entry key="app/src/main/res/layout/activity_login.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/activity_register.xml" value="0.25" />
       </map>
     </option>
   </component>

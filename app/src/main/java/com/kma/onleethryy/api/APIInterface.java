@@ -19,7 +19,10 @@ public interface APIInterface {
     @GET("api/users")
     Call<List<returnAllUsers>> getAllUsers(@Header("Authorization") String content_type);
 
-    class postLoginObject{
+    @POST("api/users/register")
+    Call<returnRegister> registerUser(@Body postRegister user);
+
+    class postLoginObject {
         String username;
         String password;
 
@@ -29,7 +32,7 @@ public interface APIInterface {
         }
     }
 
-    class returnPostLogin{
+    class returnPostLogin {
         @SerializedName("success")
         boolean success;
         @SerializedName("token")
@@ -82,7 +85,7 @@ public interface APIInterface {
         }
     }
 
-    class returnAllUsers{
+    class returnAllUsers {
         @SerializedName("_id")
         String id;
         @SerializedName("name")
@@ -115,8 +118,62 @@ public interface APIInterface {
         }
     }
 
+    class postRegister {
+        String username;
+        String password;
+        String password2;
+        String name;
 
+        public postRegister(String username, String password, String password2, String name) {
+            this.username = username;
+            this.password = password;
+            this.password2 = password2;
+            this.name = name;
+        }
+    }
 
+    class returnRegister {
+        @SerializedName("success")
+        boolean success;
+        @SerializedName("token")
+        String token;
+        @SerializedName("name")
+        String name;
+        @SerializedName("message")
+        String message;
+
+        public boolean isSuccess() {
+            return success;
+        }
+
+        public void setSuccess(boolean success) {
+            this.success = success;
+        }
+
+        public String getToken() {
+            return token;
+        }
+
+        public void setToken(String token) {
+            this.token = token;
+        }
+
+        public String getName() {
+            return name;
+        }
+
+        public void setName(String name) {
+            this.name = name;
+        }
+
+        public String getMessage() {
+            return message;
+        }
+
+        public void setMessage(String message) {
+            this.message = message;
+        }
+    }
 }
 
 
