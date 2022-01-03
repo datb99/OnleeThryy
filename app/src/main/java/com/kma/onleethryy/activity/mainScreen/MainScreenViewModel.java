@@ -8,6 +8,8 @@ public class MainScreenViewModel extends BaseObservable {
 
     public MainScreenViewModel(MainScreenActivity activity){
         this.activity = activity;
+
+
     }
 
 

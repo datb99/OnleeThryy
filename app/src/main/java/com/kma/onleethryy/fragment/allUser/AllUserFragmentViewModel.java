@@ -4,7 +4,6 @@ import android.util.Log;
 
 import androidx.databinding.BaseObservable;
 
-import com.google.gson.Gson;
 import com.kma.onleethryy.activity.mainScreen.MainScreenActivity;
 import com.kma.onleethryy.api.APIClient;
 import com.kma.onleethryy.api.APIInterface;
@@ -21,6 +20,7 @@ public class AllUserFragmentViewModel extends BaseObservable {
     AllUserFragment fragment;
     ArrayList<APIInterface.returnAllUsers> listUser = new ArrayList<>();
 
+
     public AllUserFragmentViewModel (AllUserFragment fragment){
         this.fragment = fragment;
     }
@@ -32,7 +32,7 @@ public class AllUserFragmentViewModel extends BaseObservable {
                 .enqueue(new Callback<List<APIInterface.returnAllUsers>>() {
                     @Override
                     public void onResponse(Call<List<APIInterface.returnAllUsers>> call, Response<List<APIInterface.returnAllUsers>> response) {
-                        Log.d("TAG1432", "onResponse: success " + new Gson().toJson(response.body()));
+                        fragment.initListUer(response.body());
                     }
 
                     @Override

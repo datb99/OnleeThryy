@@ -14,6 +14,7 @@ import com.kma.onleethryy.activity.mainScreen.MainScreenActivity;
 import com.kma.onleethryy.activity.register.RegisterActivity;
 import com.kma.onleethryy.api.APIClient;
 import com.kma.onleethryy.api.APIInterface;
+import com.kma.onleethryy.utils.AppUtils;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -60,8 +61,10 @@ public class LoginViewModel extends BaseObservable {
                     @Override
                     public void onResponse(Call<APIInterface.returnPostLogin> call, Response<APIInterface.returnPostLogin> response) {
                         //post thanh cong
-                        if (response.body().isSuccess()){
+                        if (response.body() != null && response.body().isSuccess()){
                             //dang nhap thanh cong
+                            AppUtils.idUser = response.body().getUserID();
+                            AppUtils.token = response.body().getToken();
                             Intent intent = new Intent(activity , MainScreenActivity.class);
                             intent.putExtra("user_id" , response.body().getUserID());
                             intent.putExtra("token" , response.body().getToken());
