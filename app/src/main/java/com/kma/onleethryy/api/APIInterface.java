@@ -1,14 +1,19 @@
 package com.kma.onleethryy.api;
 
 import com.google.gson.annotations.SerializedName;
+import com.kma.onleethryy.utils.AppUtils;
 
+import java.io.File;
 import java.util.List;
 
+import okhttp3.MultipartBody;
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.GET;
 import retrofit2.http.Header;
+import retrofit2.http.Multipart;
 import retrofit2.http.POST;
+import retrofit2.http.Part;
 import retrofit2.http.Query;
 
 public interface APIInterface {
@@ -27,6 +32,13 @@ public interface APIInterface {
 
     @POST("api/messages/")
     Call<returnSendMessage> sendMessage(@Header("Authorization") String content_type , @Body sendMessageObject message);
+
+    @POST("api/users/register")
+    Call<returnRegister> register(@Body postRegisterObject user);
+
+    @Multipart
+    @POST("api/upload")
+    Call<returnURL> postImage(@Part MultipartBody.Part image);
 
     class postLoginObject{
         String username;
@@ -353,6 +365,70 @@ public interface APIInterface {
         public sendMessageObject(String body , String to){
             this.body = body;
             this.to = to;
+        }
+    }
+
+    class postRegisterObject{
+        String name;
+        String username;
+        String password;
+        String avatar;
+        String password2;
+        String publicKey;
+
+        public postRegisterObject(String name , String username , String password , String password2 , String avatar){
+            this.name = name;
+            this.username = username;
+            this.password = password;
+            this.password2 = password2;
+            this.publicKey = AppUtils.hashString(username + password);
+            this.avatar = avatar;
+        }
+    }
+
+    class returnRegister{
+        @SerializedName("success")
+        boolean success;
+        @SerializedName("token")
+        String token;
+        @SerializedName("name")
+        String name;
+
+        public boolean isSuccess() {
+            return success;
+        }
+
+        public void setSuccess(boolean success) {
+            this.success = success;
+        }
+
+        public String getToken() {
+            return token;
+        }
+
+        public void setToken(String token) {
+            this.token = token;
+        }
+
+        public String getName() {
+            return name;
+        }
+
+        public void setName(String name) {
+            this.name = name;
+        }
+    }
+
+    class returnURL{
+        @SerializedName("url")
+        String url;
+
+        public String getUrl() {
+            return url;
+        }
+
+        public void setUrl(String url) {
+            this.url = url;
         }
     }
 }

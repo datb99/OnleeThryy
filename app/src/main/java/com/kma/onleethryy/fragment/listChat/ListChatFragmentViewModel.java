@@ -1,18 +1,12 @@
 package com.kma.onleethryy.fragment.listChat;
 
-import android.util.Log;
-
 import androidx.databinding.BaseObservable;
-
 import com.kma.onleethryy.activity.mainScreen.MainScreenActivity;
 import com.kma.onleethryy.api.APIClient;
 import com.kma.onleethryy.api.APIInterface;
 import com.kma.onleethryy.utils.AppUtils;
-import com.squareup.picasso.Picasso;
-
 import java.util.ArrayList;
 import java.util.List;
-
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;

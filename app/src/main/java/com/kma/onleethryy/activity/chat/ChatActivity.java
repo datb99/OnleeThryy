@@ -4,20 +4,21 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 
 import com.google.gson.Gson;
 import com.kma.onleethryy.R;
-import com.kma.onleethryy.activity.mainScreen.MainScreenActivity;
 import com.kma.onleethryy.adapter.ListMessageAdapter;
 import com.kma.onleethryy.api.APIClient;
 import com.kma.onleethryy.api.APIInterface;
 import com.kma.onleethryy.databinding.ActivityChatBinding;
+import com.kma.onleethryy.utils.AES;
 import com.kma.onleethryy.utils.AppUtils;
 
 import java.net.URISyntaxException;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 
@@ -31,10 +32,15 @@ import retrofit2.Response;
 public class ChatActivity extends AppCompatActivity {
 
     ActivityChatBinding binding;
-    String userId = "61cc6f7687097ff4963ffe57";
     ListMessageAdapter adapter;
     Socket socket;
     String urlServer = "http://14.225.7.41:8686";
+
+    String receiverId;
+    String receiverName;
+    String receiverAva;
+
+    String key;
 
     {
         try {
@@ -52,6 +58,13 @@ public class ChatActivity extends AppCompatActivity {
         socket.on("messages" , onNewMessage);
         binding = DataBindingUtil.setContentView(this , R.layout.activity_chat);
 
+        //load du lieu cua nguoi nhan
+        loadIntent();
+
+        //tao ra key tu id
+        key = AES.genKeyFromId(AppUtils.idUser , receiverId);
+
+        //load du lieu doan chat
         loadChat();
 
         binding.sendButton.setOnClickListener((v)->{
@@ -60,12 +73,27 @@ public class ChatActivity extends AppCompatActivity {
             }
         });
 
+        binding.backButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
+            }
+        });
+
+    }
+
+    private void loadIntent(){
+        Intent intent = getIntent();
+        receiverId = intent.getStringExtra("receiverId");
+        receiverName = intent.getStringExtra("receiverName");
+        receiverAva = intent.getStringExtra("receiverAva");
+        binding.nameReceiver.setText(receiverName);
     }
 
     private void loadChat(){
         APIClient.getClient()
                 .create(APIInterface.class)
-                .getAllChat(AppUtils.token, userId)
+                .getAllChat(AppUtils.token, receiverId)
                 .enqueue(new Callback<List<APIInterface.returnMessage>>() {
                     @Override
                     public void onResponse(Call<List<APIInterface.returnMessage>> call, Response<List<APIInterface.returnMessage>> response) {
@@ -80,7 +108,7 @@ public class ChatActivity extends AppCompatActivity {
 
     private void initMessage(List<APIInterface.returnMessage> list){
         Collections.reverse(list);
-        adapter = new ListMessageAdapter(getApplicationContext() , list);
+        adapter = new ListMessageAdapter(getApplicationContext() , list , binding.recyclerView.getWidth() , key);
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         layoutManager.setReverseLayout(true);
         binding.recyclerView.setLayoutManager(layoutManager);
@@ -88,8 +116,10 @@ public class ChatActivity extends AppCompatActivity {
     }
 
     private void sendMessage(){
+        String content = binding.editText.getText().toString();
+        String encrypt = AES.encrypt(content , key);
         APIInterface.sendMessageObject message = new APIInterface
-                .sendMessageObject(binding.editText.getText().toString() , userId);
+                .sendMessageObject(encrypt , receiverId);
         AppUtils.hideKeyBoard(this);
         binding.editText.setText("");
         binding.editText.clearFocus();
@@ -112,6 +142,6 @@ public class ChatActivity extends AppCompatActivity {
 
     private Emitter.Listener onNewMessage = (args)->{
         //chi mang
-        Log.d("TAG1432", "message change: ");
+        loadChat();
     };
 }

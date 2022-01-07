@@ -11,13 +11,17 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.kma.onleethryy.activity.chat.ChatActivity;
 import com.kma.onleethryy.activity.mainScreen.MainScreenActivity;
+import com.kma.onleethryy.api.APIClient;
 import com.kma.onleethryy.api.APIInterface;
 import com.kma.onleethryy.databinding.ItemAllUsersBinding;
 import com.kma.onleethryy.utils.AppUtils;
 
 import java.util.List;
+
+import de.hdodenhof.circleimageview.CircleImageView;
 
 public class AllUsersAdapter extends RecyclerView.Adapter<AllUsersAdapter.ViewHolder> {
 
@@ -41,15 +45,22 @@ public class AllUsersAdapter extends RecyclerView.Adapter<AllUsersAdapter.ViewHo
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         APIInterface.returnAllUsers user = listUser.get(position);
         if (user.getId().equals(AppUtils.idUser)){
+            AppUtils.setUser(user);
             listUser.remove(user);
         }else {
             holder.textView.setText(user.getName());
         }
+        Glide.with(context)
+                .load(APIClient.BASE_URL + listUser.get(position).getAvatar())
+                .into(holder.avatar);
         holder.linearLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(context , ChatActivity.class);
-                //truyen vao tham so\
+                //truyen vao tham so
+                intent.putExtra("receiverId" , user.getId());
+                intent.putExtra("receiverName" , user.getName());
+                intent.putExtra("receiverAva" , user.getAvatar());
                 context.startActivity(intent);
             }
         });
@@ -65,11 +76,13 @@ public class AllUsersAdapter extends RecyclerView.Adapter<AllUsersAdapter.ViewHo
 
         TextView textView;
         LinearLayout linearLayout;
+        CircleImageView avatar;
 
         public ViewHolder(ItemAllUsersBinding binding) {
             super(binding.getRoot());
             textView = binding.textView;
             linearLayout = binding.mLayout;
+            avatar = binding.avatar;
         }
     }
 }

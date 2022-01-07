@@ -6,7 +6,7 @@ import androidx.fragment.app.FragmentActivity;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
 
 import com.kma.onleethryy.fragment.allUser.AllUserFragment;
-import com.kma.onleethryy.fragment.friend.SettingFragment;
+import com.kma.onleethryy.fragment.setting.SettingFragment;
 import com.kma.onleethryy.fragment.listChat.ListChatFragment;
 
 public class FragmentAdapter extends FragmentStateAdapter {

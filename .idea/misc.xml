@@ -7,12 +7,15 @@
         <entry key="..\:/Android/Android Project/AndroidLearning/OnleeThryy/app/src/main/res/drawable/circle_view.xml" value="0.23692307692307693" />
         <entry key="..\:/Android/Android Project/AndroidLearning/OnleeThryy/app/src/main/res/drawable/ic_baseline_supervised_user_circle_24.xml" value="0.23692307692307693" />
         <entry key="..\:/Android/Android Project/AndroidLearning/OnleeThryy/app/src/main/res/drawable/round_view.xml" value="0.23692307692307693" />
-        <entry key="..\:/Android/Android Project/AndroidLearning/OnleeThryy/app/src/main/res/layout/activity_chat.xml" value="0.33" />
+        <entry key="..\:/Android/Android Project/AndroidLearning/OnleeThryy/app/src/main/res/layout/activity_chat.xml" value="0.25" />
         <entry key="..\:/Android/Android Project/AndroidLearning/OnleeThryy/app/src/main/res/layout/activity_login.xml" value="0.22447916666666667" />
         <entry key="..\:/Android/Android Project/AndroidLearning/OnleeThryy/app/src/main/res/layout/activity_main_screen.xml" value="0.22447916666666667" />
+        <entry key="..\:/Android/Android Project/AndroidLearning/OnleeThryy/app/src/main/res/layout/activity_register.xml" value="0.2245961438249088" />
+        <entry key="..\:/Android/Android Project/AndroidLearning/OnleeThryy/app/src/main/res/layout/activity_splash.xml" value="0.22447916666666667" />
         <entry key="..\:/Android/Android Project/AndroidLearning/OnleeThryy/app/src/main/res/layout/fragment_all_user.xml" value="0.22447916666666667" />
         <entry key="..\:/Android/Android Project/AndroidLearning/OnleeThryy/app/src/main/res/layout/fragment_friend.xml" value="0.22447916666666667" />
         <entry key="..\:/Android/Android Project/AndroidLearning/OnleeThryy/app/src/main/res/layout/fragment_list_chat.xml" value="0.22447916666666667" />
+        <entry key="..\:/Android/Android Project/AndroidLearning/OnleeThryy/app/src/main/res/layout/fragment_setting.xml" value="0.22447916666666667" />
         <entry key="..\:/Android/Android Project/AndroidLearning/OnleeThryy/app/src/main/res/layout/item_all_users.xml" value="0.22447916666666667" />
         <entry key="..\:/Android/Android Project/AndroidLearning/OnleeThryy/app/src/main/res/layout/item_conversation.xml" value="0.22447916666666667" />
         <entry key="..\:/Android/Android Project/AndroidLearning/OnleeThryy/app/src/main/res/layout/item_message.xml" value="0.22447916666666667" />

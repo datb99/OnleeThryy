@@ -27,8 +27,6 @@ public class ListChatFragment extends Fragment {
     ListChatFragmentViewModel viewModel;
     ListChatAdapter adapter;
 
-
-
     public ListChatFragment() {
         // Required empty public constructor
     }
@@ -59,6 +57,11 @@ public class ListChatFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
         viewModel.getAllConversation();
     }
 
